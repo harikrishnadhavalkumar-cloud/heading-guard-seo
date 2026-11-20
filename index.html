@@ -394,10 +394,10 @@ count($("#orbn"),rowsOf.today.length);
 $("#stats").innerHTML=[["Blogs on the site",S.total_pages,"","from the blog lists",""],["Checked so far",S.checked,"",cov+"% of all blogs, still crawling",`<div class="meter"><i style="width:${Math.max(cov,2)}%"></i></div>`],["Too long",S.over,"bad",S.pct_over+"% of the blogs checked",""],["Changed in WordPress",D.applied.length,"good","test edits so far",""]].map(t=>`<div class="glass stat"><div class="mono">${t[0]}</div><div class="n ${t[2]}" data-n="${t[1]}">0</div><p>${t[3]}</p>${t[4]}</div>`).join("");
 $$("[data-n]").forEach(e=>count(e,+e.dataset.n));
 
-$("#tabs .tab[data-p=today]").innerHTML="Today's fixes <small>"+fmt(rowsOf.today.length)+'</small>';
-$("#tabs .tab[data-p=done]").innerHTML='Done today <small>'+fmt(((D.tracker||{}).blogs||[]).filter(b=>(b.changed||'').slice(0,10)==TODAY).length)+'</small>';
+$("#tabs .tab[data-p=today]").innerHTML="2 · Today's new blogs <small>"+fmt(rowsOf.today.length)+'</small>';
+$("#tabs .tab[data-p=done]").innerHTML='4 · Done (all changes) <small>'+fmt((D.site||{}).done||0)+'</small>';
 $("#tabs .tab[data-p=yest]").innerHTML='Yesterday <small>'+fmt(rowsOf.yest.length)+'</small>';
-$("#tabs .tab[data-p=all]").innerHTML='All blogs <small>'+fmt(S.checked)+'</small>';
+$("#tabs .tab[data-p=all]").innerHTML='Blog list <small>'+fmt(S.checked)+'</small>';
 function showTab(p){$$(".tab").forEach(b=>b.setAttribute("aria-selected",b.dataset.p==p));$$(".panel").forEach(x=>x.classList.toggle("on",x.id=="p-"+p));if(p=="all"&&!allInit)initAll();if(p=="done")initDone()}
 $$(".tab").forEach(b=>b.onclick=()=>showTab(b.dataset.p));
 $$("[data-go]").forEach(b=>b.onclick=()=>{showTab(b.dataset.go);$("#tabs").scrollIntoView({behavior:"smooth"})});
